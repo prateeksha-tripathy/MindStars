@@ -72,7 +72,7 @@ export const google = async (req, res, next) => {
         } else {
             // console.log("else condition");
             const generatedPassword = Math.random().toString(36).slice(-8);
-            console.log("Generated password ",generatedPassword);
+            // console.log("Generated password ",generatedPassword);
             const hashedPassword = bcryptjs.hashSync(generatedPassword,10);
             // console.log(hashedPassword);
             const newUser = new User({
@@ -83,7 +83,7 @@ export const google = async (req, res, next) => {
             });
             await newUser.save();
             const token = jwt.sign({id : newUser._id},process.env.JWT_SECRET);
-            console.log(token);
+            // console.log(token);
             const {password, ...rest} = newUser._doc;
             res.status(200).cookie("access_token", token,{
                 httpOnly:true,
