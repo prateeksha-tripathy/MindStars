@@ -10,6 +10,8 @@ import { BrowserRouter , Route , Routes } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import PrivateRoute from './components/PrivateRoute'
+import CreatePost from './pages/CreatePost'
+import OnlyAdminPrivateRoute from './components/OnlyAdminPrivateRoute'
 
 export default function App() {
   return (
@@ -23,6 +25,9 @@ export default function App() {
         <Route element = {<PrivateRoute />}>                            {/* to make dashboard private (not accessible when signed out) */}
           <Route path="/dashboard" element={<Dashboard />} />
         </Route> 
+        <Route element = {<OnlyAdminPrivateRoute />}>                   {/* to make dashboard private (not accessible when signed out) */}
+          <Route path="/create-post" element={<CreatePost />} />
+        </Route>
         <Route path="/projects" element={<Projects />} />
 
       </Routes>
