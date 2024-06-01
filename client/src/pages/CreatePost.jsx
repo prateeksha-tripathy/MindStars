@@ -9,10 +9,12 @@ import {
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { app } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 //For the text box in create post page
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+
 
 const CreatePost = () => {
   const [file, setFile] = useState(null);
@@ -21,6 +23,8 @@ const CreatePost = () => {
   const [formData, setFormData] = useState({});
   // console.log(formData);
   const [publishError, setPublishError] = useState(null);
+
+  const navigate = useNavigate()
 
   const handleUploadImage = async () => {
     try {
@@ -77,7 +81,7 @@ const CreatePost = () => {
 
       if (res.ok) {
         setPublishError(null);
-        // navigate(`/post/${data.slug}`);
+        navigate(`/post/${data.slug}`);
       }
     } catch (error) {
       setPublishError('Something went wrong');
